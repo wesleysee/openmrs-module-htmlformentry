@@ -29,5 +29,12 @@ public class HtmlFormEntryConstants {
     public static final String COMPLEX_UUID = "8d4a6242-c2cc-11de-8d13-0010c6dffd0f";
 
     public static final String ANSWER_LOCATION_TAGS="answerLocationTags";
-      
+    
+    public static final String MODULE_ID = "htmlformentry";
+
+    // Global property names
+ 	public static final String PROP_PDF_PAGE_SIZE = MODULE_ID + ".pdfPageSize";
+ 	public static final String PROP_PDF_ENABLED = MODULE_ID + ".pdfEnabled";
+ 	public static final String PROP_WKHTMLTOPDF_PATH = MODULE_ID + ".wkhtmltopdfPath";
+ 	public static final String PROP_WKHTMLTOPDF_ARGS = MODULE_ID + ".wkhtmltopdfArgs";
 }

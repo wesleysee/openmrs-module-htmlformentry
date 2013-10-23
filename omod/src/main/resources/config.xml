@@ -59,6 +59,34 @@
 			Set to true if you want static text for the date format to be displayed next to date widgets, else set to false. 
 		</description>
 	</globalProperty>
+	<globalProperty>
+		<property>htmlformentry.pdfEnabled</property>
+		<defaultValue>false</defaultValue>
+		<description>
+			Set to true if you want to enable PDF view of forms, else set to false. wkhtmltopdf needs to be installed for this to work. 
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>htmlformentry.pdfPageSize</property>
+		<defaultValue>Letter</defaultValue>
+		<description>
+			Specify the page size of PDF. A4, Letter, Legal, etc. 
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>htmlformentry.wkhtmltopdfPath</property>
+		<defaultValue></defaultValue>
+		<description>
+			 Full path to wkhtmltopdf, e.g. /home/user/wkhtmltopdf/wkhtmltopdf. If wkhtmltopdf is in system PATH, then there's no need to set this.
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>htmlformentry.wkhtmltopdfArgs</property>
+		<defaultValue>--disable-smart-shrinking</defaultValue>
+		<description>
+			 Extra arguments to wkhtmltopdf
+		</description>
+	</globalProperty>
 	<!-- /Required Global Properties -->
 	
 	<dwr>
@@ -80,12 +108,11 @@
 	</dwr>
 	
 	<!-- Servlets -->
-	<!-- Accessed through the url /pageContext()/moduleServlet/<moduleId>/<servlet-name> 
+	<!-- <Accessed through the url /pageContext()/moduleServlet/<moduleId>/<servlet-name> --> 
 	<servlet>
-		<servlet-name>formDownload</servlet-name>
-		<servlet-class>@MODULE_PACKAGE@.web.FormDownloadServlet</servlet-class>
+		<servlet-name>formPdfServlet</servlet-name>
+		<servlet-class>@MODULE_PACKAGE@.web.servlet.FormPdfServlet</servlet-class>
 	</servlet>
-	-->
 	<!-- /Servlets -->
 	
 	
