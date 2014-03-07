@@ -17,12 +17,12 @@ import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.htmlformentry.BadFormDesignException;
 import org.openmrs.module.htmlformentry.FormEntryContext.Mode;
-import org.openmrs.module.htmlformentry.web.view.PDFView;
 import org.openmrs.module.htmlformentry.FormEntrySession;
 import org.openmrs.module.htmlformentry.FormSubmissionError;
 import org.openmrs.module.htmlformentry.HtmlForm;
 import org.openmrs.module.htmlformentry.HtmlFormEntryUtil;
 import org.openmrs.module.htmlformentry.ValidationException;
+import org.openmrs.module.htmlformentry.web.view.PDFView;
 import org.openmrs.util.OpenmrsUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,7 +56,7 @@ public class HtmlFormEntryController {
 	@RequestMapping(method = RequestMethod.GET, value = PDF_PATH)
 	public ModelAndView showFormPdf(HttpServletRequest request) throws Exception {
 		String url = request.getRequestURL().toString();
-		url = url.replace(PDF_PATH, FORM_PATH) + "?" + request.getQueryString();
+		url = url.replace(PDF_PATH, FORM_PATH) + "?" + request.getQueryString() + "&inPrintableFormat=true";
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("url", url);
 		return new ModelAndView(new PDFView(), model);
