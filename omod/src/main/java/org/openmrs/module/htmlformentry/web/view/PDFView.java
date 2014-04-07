@@ -4,6 +4,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -66,11 +69,20 @@ public class PDFView extends AbstractView {
 			String path = StringUtils.defaultString(
 				adminSvc.getGlobalProperty(HtmlFormEntryConstants.PROP_WKHTMLTOPDF_PATH), "wkhtmltopdf");
 			String extraArgs = StringUtils.defaultString(adminSvc
-			        .getGlobalProperty(HtmlFormEntryConstants.PROP_WKHTMLTOPDF_ARGS));
-
-			ProcessBuilder pb = new ProcessBuilder(path, extraArgs, "--page-size",
-				adminSvc.getGlobalProperty(HtmlFormEntryConstants.PROP_PDF_PAGE_SIZE),
-				"--cookie", cookie.getName(), cookie.getValue(), url, "-");
+				.getGlobalProperty(HtmlFormEntryConstants.PROP_WKHTMLTOPDF_ARGS));
+			
+			List<String> args = new ArrayList<String>();
+			args.add(path);
+			Collections.addAll(args, extraArgs.split(" "));
+			args.add("--page-size");
+			args.add(adminSvc.getGlobalProperty(HtmlFormEntryConstants.PROP_PDF_PAGE_SIZE));
+			args.add("--cookie");
+			args.add(cookie.getName());
+			args.add(cookie.getValue());
+			args.add(url);
+			args.add("-");
+			
+			ProcessBuilder pb = new ProcessBuilder(args.toArray(new String[args.size()]));
 			process = pb.start();
 			
 			is = process.getInputStream();
